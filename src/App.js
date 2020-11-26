@@ -1,45 +1,18 @@
-// import React from 'react';
-// import SeasonDisplay from './SeasonDispay';
+import React, { Component } from 'react';
+import SearchBar from './components/SearchBar';
 
-// function App() {
-//   return (
-//     <div className='App'>
-//       <h1>Your current possition</h1>
-//       <SeasonDisplay />
-//     </div>
-//   );
-// }
+export default class App extends Component {
+  onSearchSubmit(term) {
+    console.log(term);
+  }
 
-// export default App;
-
-// class App extends React.Component {
-//   state = {
-//     time: null
-//   };
-
-//   componentDidMount() {
-//     setInterval(() => {
-//       this.setState({ time: new Date().toLocaleTimeString() });
-//     }, 1000);
-//   }
-
-//   render() {
-//     return <h1>The time is: {this.state.time}</h1>;
-//   }
-// }
-
-// export default App;
-
-import React, { useState, useEffect } from 'react';
-
-export default function App() {
-  const [time, setTime] = useState(new Date().toLocaleTimeString());
-
-  useEffect(() => {
-    setInterval(() => {
-      setTime(new Date().toLocaleTimeString());
-    }, 1000);
-  }, []);
-
-  return <h1>The time is: {time}</h1>;
+  render() {
+    return (
+      <div className='app container'>
+        <div className='ui container' style={{ marginTop: '50px' }}>
+          <SearchBar onSubmit={this.onSearchSubmit} />
+        </div>
+      </div>
+    );
+  }
 }
