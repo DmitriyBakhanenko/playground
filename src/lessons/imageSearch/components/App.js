@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import SearchBar from './components/SearchBar';
-import ImageList from './components/ImageList';
+import SearchBar from './lessons/imageSearch/components/SearchBar';
+import ImageList from './lessons/imageSearch/components/ImageList';
 
-import './components/ImageList.css';
+import './lessons/imageSearch/components/ImageList.css';
 
 const ACCESS_KEY = process.env.REACT_APP_ACCESS_KEY;
 
