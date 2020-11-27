@@ -1,40 +1,29 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
 import SearchBar from './components/SearchBar';
-import ImageList from './components/ImageList';
-
-import './components/ImageList.css';
-
-const ACCESS_KEY = process.env.REACT_APP_ACCESS_KEY;
+import { youtubeApi } from './components/Youtube';
+import VideoList from './components/VideoList';
 
 export default class App extends Component {
   state = {
-    images: []
+    items: []
   };
 
-  onSearchSubmit = async term => {
-    const response = await axios.get('https://api.unsplash.com/search/photos', {
-      params: { query: term },
-      headers: {
-        Authorization: `Client-ID ${ACCESS_KEY}`
+  onTermSubmit = async term => {
+    const response = await youtubeApi.get('/search', {
+      params: {
+        q: term
       }
     });
-    this.setState({ images: response.data.results });
+    this.setState({ items: response.data.items });
   };
 
   render() {
     return (
-      <div className='ui container'>
-        <div style={{ margin: '35px 0' }}>
-          <SearchBar onSubmit={this.onSearchSubmit} />
-        </div>
-
-        <div className='images-list'>
-          {this.state.images.length > 0 ? (
-            <ImageList images={this.state.images} />
-          ) : null}
-        </div>
+      <div style={{ width: '70vw', margin: '20px auto' }}>
+        <SearchBar onTermSubmit={this.onTermSubmit} />
+        <VideoList videos={this.state.items} />
       </div>
     );
   }
