@@ -7,7 +7,7 @@ export const youtubeApi = axios.create({
   params: {
     part: 'snippet',
     type: 'video',
-    maxResults: 10,
+    maxResults: 5,
     key: KEY
   }
 });
