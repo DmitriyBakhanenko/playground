@@ -11,10 +11,10 @@ export default function Dropdown({
 
   useEffect(() => {
     const onClickEvent = event => {
-      if (UiFormRef.current.contains(event.target)) {
-        return;
+      if (!UiFormRef.current) return;
+      if (!UiFormRef.current.contains(event.target)) {
+        setVisible(false);
       }
-      setVisible(false);
     };
 
     document.body.addEventListener('click', onClickEvent);
