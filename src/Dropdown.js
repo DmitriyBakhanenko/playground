@@ -4,16 +4,20 @@ export default function Dropdown({ options, selected, onSelectedChange }) {
   const [visible, setVisible] = useState(false);
   const UiFormRef = useRef();
 
-  const handleListener = () => {
-    const onClickEvent = e => {
-      if (!UiFormRef.current.contains(e.target)) setVisible(false);
-      return;
+  useEffect(() => {
+    const onClickEvent = event => {
+      if (UiFormRef.current.contains(event.target)) {
+        return;
+      }
+      setVisible(false);
     };
 
-    setVisible(!visible);
-    if (visible) document.body.addEventListener('click', onClickEvent);
-    else document.body.removeEventListener('click', onClickEvent);
-  };
+    document.body.addEventListener('click', onClickEvent);
+
+    return () => {
+      document.body.removeEventListener('click', onClickEvent);
+    };
+  }, []);
 
   const rendOptions = options.map(option => {
     if (option.value === selected.value) return null;
@@ -33,7 +37,7 @@ export default function Dropdown({ options, selected, onSelectedChange }) {
       <div className='field'>
         <label className='label'>Select a color</label>
         <div
-          onClick={handleListener}
+          onClick={() => setVisible(!visible)}
           className={`ui selection dropdown ${visible ? 'visible active' : ''}`}
         >
           <i className='dropdown icon'></i>
