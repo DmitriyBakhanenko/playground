@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 // import Accordian from './Accordian';
-import Search from './Search';
+// import Search from './Search';
+import Dropdown from './Dropdown';
 
 // const items = [
 //   {
@@ -20,11 +22,33 @@ import Search from './Search';
 //   }
 // ];
 
+const options = [
+  {
+    label: 'Red Blood Color ',
+    value: 'red'
+  },
+  {
+    label: 'The Color of Grass',
+    value: 'green'
+  },
+  {
+    label: 'A shade of Blue',
+    value: 'blue'
+  }
+];
+
 export default function App() {
+  const [selected, setSelected] = useState(options[0]);
+
   return (
     <div>
       {/* <Accordian items={items} /> */}
-      <Search />
+      {/* <Search /> */}
+      <Dropdown
+        options={options}
+        selected={selected}
+        onSelectedChange={setSelected}
+      />
     </div>
   );
 }
