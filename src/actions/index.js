@@ -15,3 +15,8 @@ export const fetchUsers = () => async dispatch => {
     payload: response.data
   });
 };
+
+export const removePost = title => ({
+  type: 'REMOVE_POST',
+  payload: title
+});
