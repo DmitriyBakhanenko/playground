@@ -1,9 +1,10 @@
 import React from 'react';
+import PostList from './PostList';
 
 export default function App() {
   return (
-    <div>
-      <div>FDFDFSDFSDFSD</div>
+    <div className='ui container middle column center column'>
+      <PostList />
     </div>
   );
 }
